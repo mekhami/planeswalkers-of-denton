@@ -36,9 +36,9 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('images', function() {
-    return gulp.src('<<django image sources>>')
+    return gulp.src('<<image source files>>')
         .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
-        .pipe(gulp.dest('<<django static images dir>>;))
+        .pipe(gulp.dest('<<django images dir>>'))
         .pipe(notify({ message: "Images task complete." }));
 });
 
@@ -48,4 +48,10 @@ gulp.task('clean', function(cb) {
 
 gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
+});
+
+gulp.task('watch', function() {
+    gulp.watch('<<sass source files>>', ['styles']);
+    gulp.watch('<<js source files>>', ['scripts']);
+    gulp.watch('<<image source files>>', ['images']);
 });
